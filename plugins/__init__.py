@@ -41,12 +41,12 @@ ok = udB.get("SUDOS")
 if ok:
     SUDO_USERS = set(int(x) for x in ok.split())
 else:
-    SUDO_USERS = ""
+    SUDO_USERS = []
 
 if SUDO_USERS:
     sudos = list(SUDO_USERS)
 else:
-    sudos = ""
+    sudos = []
 
 on = Var.SUDO
 
