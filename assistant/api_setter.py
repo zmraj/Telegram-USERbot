@@ -40,4 +40,4 @@ async def rmbgapi(event):
             return await conv.send_message("Cancelled!!")
         else:
             await setit(event, var, themssg)
-            await conv.send_message("{} changed to {}".format(name, themssg))
+            await conv.send_message(f"{name} changed to {themssg}")
