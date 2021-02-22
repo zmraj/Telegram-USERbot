@@ -24,7 +24,7 @@ ytt = "https://telegra.ph/file/afd04510c13914a06dd03.jpg"
 @in_owner
 async def _(event):
     try:
-        string = event.text.split(" ", maxsplit=1)[1]
+        string = event.text.split(None, 1)[1]
     except IndexError:
         fuk = event.builder.article(
             title="Search Something",
@@ -74,6 +74,7 @@ async def _(event):
             )
         )
     await event.answer(results)
+    return
 
 
 @callback(re.compile("audio(.*)"))
@@ -148,6 +149,7 @@ async def _(sur):
             f"Get Your requested file **{ytdl_data['title']}** from here {Var.BOT_USERNAME} ",
             buttons=Button.switch_inline("Search More", query="yt ", same_peer=True),
         )
+    return
 
 
 @callback(re.compile("video(.*)"))
@@ -195,3 +197,4 @@ async def _(fuk):
             f"Get Your requested file **{ytdl_data['title']}** from here {Var.BOT_USERNAME} ",
             buttons=Button.switch_inline("Search More", query="yt ", same_peer=True),
         )
+    return
