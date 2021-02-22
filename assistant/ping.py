@@ -5,16 +5,16 @@
 # PLease read the GNU Affero General Public License in
 # <https://www.github.com/TeamUltroid/Ultroid/blob/main/LICENSE/>.
 
-from datetime import datetime
+from time import time
 
 
 @asst_cmd("ping")
 @owner
 async def _(event):
-    start = datetime.now()
-    end = datetime.now()
-    ms = (end - start).microseconds / 1000
+    start = time()
+    ms = (time() - start)
     await asst.send_message(
         event.chat_id,
         f"**Pong!!**\n `{ms}ms`",
     )
+    return
