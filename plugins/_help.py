@@ -41,8 +41,10 @@ async def ult(ult):
                     await eor(ult, x)
                 except BaseException:
                     await eod(ult, f"`{plug}` is not a valid plugin!", time=5)
-        except BaseException:
-            await eor(ult, "Error 🤔 occured.")
+                    return
+        except BaseException as ef:
+            await eor(ult, "Error 🤔 occured\Error: `{ef}`\nReport to Support Group")
+            return
     else:
         try:
             results = await ultroid_bot.inline_query(tgbot, "ultd")
@@ -64,3 +66,4 @@ async def ult(ult):
             )
         await results[0].click(ult.chat_id, reply_to=ult.reply_to_msg_id, hide_via=True)
         await ult.delete()
+    return
