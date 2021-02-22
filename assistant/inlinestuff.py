@@ -25,7 +25,7 @@ ps = "https://telegra.ph/file/de0b8d9c858c62fae3b6e.jpg"
 @in_owner
 async def gsearch(q_event):
     try:
-        match = q_event.text.split(" ", maxsplit=1)[1]
+        match = q_event.text.split(None, 1)[1]
     except IndexError:
         kkkk = q_event.builder.article(
             title="Search Something",
@@ -82,13 +82,14 @@ async def gsearch(q_event):
         except IndexError:
             break
     await q_event.answer(searcher)
+    return
 
 
 @in_pattern("yahoo")
 @in_owner
 async def gsearch(q_event):
     try:
-        match = q_event.text.split(" ", maxsplit=1)[1]
+        match = q_event.text.split(None, 1)[1]
     except IndexError:
         kkkk = q_event.builder.article(
             title="Search Something",
@@ -140,13 +141,14 @@ async def gsearch(q_event):
         except IndexError:
             break
     await q_event.answer(searcher)
+    return
 
 
 @in_pattern("app")
 @in_owner
 async def _(e):
     try:
-        f = e.text.split(" ", maxsplit=1)[1]
+        f = e.text.split(None, 1)[1]
     except IndexError:
         kkkk = e.builder.article(
             title="Search Something",
@@ -201,6 +203,7 @@ async def _(e):
             ),
         )
     await e.answer(foles)
+    return
 
 
 @in_pattern("mods")
@@ -258,13 +261,14 @@ async def _(e):
             )
         )
     await e.answer(modss)
+    return
 
 
 @in_pattern("clipart")
 @in_owner
 async def clip(e):
     try:
-        quer = e.text.split(" ", maxsplit=1)[1]
+        quer = e.text.split(None, 1)[1]
     except IndexError:
         kkkk = e.builder.article(
             title="Search Something",
@@ -284,3 +288,4 @@ async def clip(e):
     for res in resul:
         hm += [buil.photo(include_media=True, file=res["src"])]
     await e.answer(hm, gallery=True)
+    return
