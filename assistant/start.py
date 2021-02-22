@@ -5,6 +5,7 @@
 # PLease read the GNU Affero General Public License in
 # <https://www.github.com/TeamUltroid/Ultroid/blob/main/LICENSE/>.
 
+
 from datetime import datetime
 
 from pyUltroid.functions.asst_fns import *
@@ -26,7 +27,7 @@ async def assistant(event):
                 OWNER_ID,
                 f"Bot started by [{event.sender_id}](tg://user?id={event.sender_id})",
             )
-        ok = ""
+        ok = None
         if Var.MSG_FRWD is True:
             ok = "You can contact me using this bot!!"
         if event.is_private and event.sender_id in sed:
@@ -35,6 +36,7 @@ async def assistant(event):
             f"Hey there, this is Ultroid Assistant of {OWNER_NAME}!\n\n{ok}",
             buttons=[Button.url("Know More", url="https://t.me/TeamUltroid")],
         )
+    return
 
 
 @asst_cmd("start")
@@ -51,6 +53,7 @@ async def ultroid(event):
             [custom.Button.inline("Broadcast", data="bcast")],
         ],
     )
+    return
 
 
 @callback("stat")
@@ -62,6 +65,7 @@ Total Users - {}""".format(
         ok
     )
     await event.answer(msg, cache_time=0, alert=True)
+    return
 
 
 @callback("bcast")
@@ -97,7 +101,7 @@ Broadcast completed in {time_taken} seconds.
 Total Users in Bot - {len(ok)}
 Sent to {success} users.
 Failed for {fail} user(s)."""
-            )
+    return
 
 
 @callback("setter")
@@ -111,3 +115,4 @@ async def setting(event):
             [custom.Button.inline("Other Vars.", data="otvars")],
         ],
     )
+    return
