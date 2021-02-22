@@ -21,6 +21,7 @@ async def otvaar(event):
             [Button.inline("SuperFban", data="sfban")]
         ],
     )
+    return
 
 
 @callback("taglog")
@@ -42,6 +43,7 @@ async def tagloggerr(event):
         else:
             await setit(event, var, themssg)
             await conv.send_message("{} changed to {}".format(name, themssg))
+    return
 
 
 @callback("pmset")
@@ -54,6 +56,7 @@ async def pmset(event):
             [Button.inline("Turn PMPermit Off", data="pmoff")],
         ],
     )
+    return
 
 
 @callback("pmon")
@@ -62,6 +65,7 @@ async def pmonn(event):
     var = "PMSETTING"
     await setit(event, var, "True")
     await event.edit(f"Done! PMPermit has been turned on!! Please `{hndlr}restart`")
+    return
 
 
 @callback("pmoff")
@@ -70,6 +74,7 @@ async def pmofff(event):
     var = "PMSETTING"
     await setit(event, var, "False")
     await event.edit(f"Done! PMPermit has been turned off!! Please `{hndlr}restart`")
+    return
 
 
 @callback("sfban")
@@ -80,6 +85,7 @@ async def sfban(event):
                          [Button.inline("FBan Group", data="sfgrp")],
                          [Button.inline("Exclude Feds", data="sfexf")]
                      ])
+    return
 
 
 @callback("sfgrp")
@@ -99,6 +105,7 @@ async def sfgrp(event):
         else:
             await setit(event, var, themssg)
             await conv.send_message("{} changed to {}".format(name, themssg))
+    return
 
 
 @callback("sfexf")
@@ -118,3 +125,4 @@ async def sfexf(event):
         else:
             await setit(event, var, themssg)
             await conv.send_message("{} changed to {}".format(name, themssg))
+    return
