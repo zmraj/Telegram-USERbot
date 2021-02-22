@@ -11,27 +11,26 @@ from telegraph import Telegraph, upload_file
 
 from . import *
 
-# --------------------------------------------------------------------#
 telegraph = Telegraph()
 r = telegraph.create_account(short_name="Ultroid")
 auth_url = r["auth_url"]
-# --------------------------------------------------------------------#
 
 
 @callback("alvcstm")
 @owner
 async def alvcs(event):
     await event.edit(
-        "Customise your {}alive. Choose from the below options -".format(Var.HNDLR),
+        f"Customise your {Var.HNDLR}alive. Choose from the below options -",
         buttons=[
-            [Button.inline("Alive Text", data="alvtx")],
+            [Button.inline("Alive Text", data="alvtxt")],
             [Button.inline("Alive Media", data="alvmed")],
             [Button.inline("Delete Alive Media", data="delmed")],
         ],
     )
+    return
 
 
-@callback("alvtx")
+@callback("alvtxt")
 @owner
 async def name(event):
     await event.delete()
@@ -49,7 +48,8 @@ async def name(event):
             return await conv.send_message("Cancelled!!")
         else:
             await setit(event, var, themssg)
-            await conv.send_message("{} changed to {}".format(name, themssg))
+            await conv.send_message(f"{name} changed to {themssg}")
+    return
 
 
 @callback("alvmed")
@@ -81,7 +81,8 @@ async def media(event):
             except BaseException:
                 return await conv.send_message("Terminated.")
         await setit(event, var, url)
-        await conv.send_message("{} has been set.".format(name))
+        await conv.send_message(f"{name} has been set.")
+    return
 
 
 @callback("delmed")
@@ -90,5 +91,6 @@ async def dell(event):
     try:
         udB.delete("ALIVE_PIC")
         return await event.edit("Done!")
-    except BaseException:
-        return await event.edit("Something went wrong...")
+    except BaseException as ef:
+        return await event.edit("Something went wrong...\nError: {ef}\nReport to Support Group!")
+    return
